@@ -15,6 +15,7 @@ public class GameExplorer extends JFrame{
     static int xx=90;
     static int yy=90;
     static boolean mouseIndex = false; //true, если была зажата
+    static boolean dragIndex = false; //true, если перетаскивается объект
     public GameGUI gameGUI = new GameGUI();
     public JPanel mainPanel;
     public Color backgroundColor = new Color(29, 14, 16);
@@ -36,23 +37,31 @@ public class GameExplorer extends JFrame{
         setContentPane(mainPanel);
         setVisible(true);
 
+        repaint();
     }
 
     public class MouseHandler implements MouseListener, MouseMotionListener{
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            System.out.println(e.getX()+" "+e.getY());
 
         }
 
         @Override
         public void mousePressed(MouseEvent e) {
+            System.out.println("нажата");
+            mouseIndex = true;
+            if((mouseIndex==true)&&(((e.getX()>=80)&&(e.getX()<=105))&&((e.getY()>=100)&&(e.getY()<=120))))
+                dragIndex = true;
 
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
+            System.out.println("отпущена");
+            mouseIndex = false;
+            dragIndex = false;
+            repaint();
 
         }
 
@@ -70,15 +79,11 @@ public class GameExplorer extends JFrame{
         public void mouseDragged(MouseEvent e) {
             xx = e.getX();
             yy = e.getY();
-            mouseIndex = true;
-            System.out.println(xx + " " + yy);
-
             repaint();
         }
 
         @Override
         public void mouseMoved(MouseEvent e) {
-
         }
     }
     public static void main(String[] args) {
