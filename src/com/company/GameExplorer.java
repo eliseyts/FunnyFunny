@@ -15,7 +15,8 @@ public class GameExplorer extends JFrame{
     static int xx=90;
     static int yy=90;
     static boolean mouseIndex = false; //true, если была зажата
-    static boolean dragIndex = false; //true, если перетаскивается объект
+    static boolean dragIndex = false; //true, если перетаскивается объек
+    static int levelIndex = 1;
     public GameGUI gameGUI = new GameGUI();
     public JPanel mainPanel;
     public static Color backgroundColor = new Color(29, 14, 16);
@@ -56,6 +57,7 @@ public class GameExplorer extends JFrame{
 
             if ((GameGUI.indOfGO == true)&&(((e.getX()>=310)&&(e.getX()<=490))&&((e.getY()>=300)&&(e.getY()<=380))))
                 System.out.println("!!!!!");
+            GameGUI.indOfGO = false;
 
         }
 
