@@ -54,6 +54,9 @@ public class GameExplorer extends JFrame{
             if((mouseIndex==true)&&(((e.getX()>=80)&&(e.getX()<=105))&&((e.getY()>=100)&&(e.getY()<=120))))
                 dragIndex = true;
 
+            if ((GameGUI.indOfGO == true)&&(((e.getX()>=310)&&(e.getX()<=490))&&((e.getY()>=300)&&(e.getY()<=380))))
+                System.out.println("!!!!!");
+
         }
 
         @Override
