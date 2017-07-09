@@ -16,10 +16,14 @@ import java.net.URL;
 public class GameGUI extends JComponent{
     public Color objColor = new Color(255, 200, 115);
     public Color cursorColor = new Color(180, 50, 61);
+    public static boolean indOfGO = false; //true, если игра проиграна
+   // public Color curColor = new Color(180, 50, 61);
+    public GameOverGUI gameOverMode = new GameOverGUI();
     int[] arrX1 = {60,60,560,560,200,200,150,150,520,520};
     int[] arrY1 = {100,60,60,300,300,500,500,250,250,100};
 
     GameGUI(){
+        indOfGO = false;
     }
 
     public void soundFunction(){
@@ -30,25 +34,26 @@ public class GameGUI extends JComponent{
     }
 
     public void paint(Graphics g){
-        Polygon poly = new Polygon(arrX1, arrY1, 10);
-        g.setColor(objColor);
-        g.fillPolygon(poly);
-        g.setColor(cursorColor);
+        if (indOfGO == true) gameOverMode.gameOverGUI(g);
+        else {
+            Polygon poly = new Polygon(arrX1, arrY1, 10);
+            g.setColor(objColor);
+            g.fillPolygon(poly);
+            g.setColor(cursorColor);
 
-        //if(GameExplorer.mouseIndex==false) g.fillOval(80,80,15,15);
-        //else if(GameExplorer.dragIndex==true) g.fillOval(GameExplorer.xx-5, GameExplorer.yy-30,15, 15);
+            //if(GameExplorer.mouseIndex==false) g.fillOval(80,80,15,15);
+            //else if(GameExplorer.dragIndex==true) g.fillOval(GameExplorer.xx-5, GameExplorer.yy-30,15, 15);
+            //проверка перемещения и нажатия мыши
+            if ((GameExplorer.mouseIndex == true) && (GameExplorer.dragIndex == true)) {
+                g.fillOval(GameExplorer.xx - 5, GameExplorer.yy - 30, 15, 15);
+            } else g.fillOval(80, 80, 15, 15);
 
-        if ((GameExplorer.mouseIndex==true)&&(GameExplorer.dragIndex==true))
-        {g.fillOval(GameExplorer.xx-5, GameExplorer.yy-30,15, 15);}
-        else g.fillOval(80,80,15,15);
-
-        if (poly.contains(GameExplorer.xx+5,GameExplorer.yy-25)){
-            g.drawString("YES",50,190);
-
-        }
-        else if ((GameExplorer.mouseIndex == true)&&(GameExplorer.dragIndex==true)) {
-            drawFace(g);
-            soundFunction();
+            if (poly.contains(GameExplorer.xx + 5, GameExplorer.yy - 25)) {g.drawString("YES", 50, 190);}
+            else if ((GameExplorer.mouseIndex == true) && (GameExplorer.dragIndex == true)) {
+                indOfGO = true;
+                //drawFace(g);
+                // soundFunction();
+            }
         }
     }
 

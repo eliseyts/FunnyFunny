@@ -18,7 +18,7 @@ public class GameExplorer extends JFrame{
     static boolean dragIndex = false; //true, если перетаскивается объект
     public GameGUI gameGUI = new GameGUI();
     public JPanel mainPanel;
-    public Color backgroundColor = new Color(29, 14, 16);
+    public static Color backgroundColor = new Color(29, 14, 16);
     public Color backgroundCdfolor = new Color(250, 250, 250);
     GameExplorer(){
         super("Funny Game");
